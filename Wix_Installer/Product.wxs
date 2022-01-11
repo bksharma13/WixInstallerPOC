@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+	 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+	<?define sourceFolder="D:\Xtra\Add Work\Sample_App_Wix\Sample_App_Wix\Sample_App\bin\Debug\netcoreapp3.1\"?>
+	<Product Id="*" 
+			 Name="Sample Foobar App" Language="1033" Version="!(bind.FileVersion.FoobarEXE)" 
+			 Manufacturer="Foobar Ltd."
+			 UpgradeCode="0DBE54A8-0D14-49C8-A6A1-C62AD6E21A3C">
+		<Package Id='*' Keywords='Installer' 
+				 Description="Sample Foobar App 1.0 Installer" 
+				Comments='Sample Foobar App is a registered trademark of Foobar Ltd.' Manufacturer='Foobar Ltd.'
+				InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+		
+		<WixVariable Id="WixUILicenseRtf" Value="$(var.sourceFolder)\Files\ProductAgreement.rtf" />
+		
+		<Media Id="1" Cabinet="myapplication.cab" EmbedCab="yes" />
+		<Icon Id="Icon.exe" SourceFile="$(var.sourceFolder)Sample_App.ico" />
+		<Property Id="ARPPRODUCTICON" Value="Icon.exe" />
+		
+		<MajorUpgrade Schedule="afterInstallInitialize"
+				  AllowDowngrades="no"
+				  AllowSameVersionUpgrades="no"
+				  DowngradeErrorMessage="A newer version of Sample Foobar App is already installed." />
+		
+		<Feature Id="ProductFeature" Title="Wix_Installer" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentRef Id="ApplicationShortcut" />
+			<ComponentRef Id="ApplicationShortcutDesktop" />
+			<ComponentRef Id="INSTALLFOLDER_Permission" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id='Foobar' Name='Foobar'>
+					<Directory Id='INSTALLFOLDER' Name='Sample App 1.0'/>
+				</Directory>
+			</Directory>
+		
+			<Directory Id="ProgramMenuFolder" Name="Programs">
+				<Directory Id="ProgramMenuDir" Name="Sample App 1.0">
+					<!--<Component Id="ProgramMenuDir" Guid="2F2AA3E6-A936-46E1-8706-B564E77A094A">
+						<RemoveFolder Id='RemoveProgramMenuDir' On='uninstall' />
+						<RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
+					</Component>-->
+				</Directory>
+			</Directory>	
+			<Directory Id="DesktopFolder" Name="Desktop" />
+		</Directory>	
+	</Fragment>
+
+	<Fragment>
+		<DirectoryRef Id="ProgramMenuFolder">
+			<Component Id="ApplicationShortcut" Guid="CA8A7E85-1E09-4795-8FDE-DB6F96E2920D">				
+				<RemoveFolder Id="CleanUpShortCut" Directory="ProgramMenuDir" On="uninstall"/>
+				<RegistryKey Root="HKCU"
+							 Key="Software\[Manufacturer]\[ProductName]"
+							Action="createAndRemoveOnUninstall">
+					<RegistryValue Type="integer" Name="AppShortCut" Value="1" KeyPath="yes"/>
+				</RegistryKey>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DesktopFolder">
+			<Component Id="ApplicationShortcutDesktop" Guid="ED1F7831-2B48-45E9-A6A1-794758ECA8A2">				
+				<RemoveFolder Id="RemoveDesktopFolder" Directory="DesktopFolder" On="uninstall"/>
+				<RegistryKey Root="HKCU"
+							 Key="Software\[Manufacturer]\[ProductName]"
+							Action="createAndRemoveOnUninstall">
+					<RegistryValue Type="integer" Name="DesktopShortCut" Value="1" KeyPath="yes"/>
+				</RegistryKey>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="INSTALLFOLDER">
+			<Component Id="INSTALLFOLDER_Permission" Guid="16D50AD5-77A8-4A46-B5D3-C28AA4928286">
+				<CreateFolder>
+					<util:PermissionEx User="Users" GenericAll="yes"/>
+				</CreateFolder>
+			</Component>
+		</DirectoryRef>
+
+	</Fragment>
+	  
+	
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id='MainExecutable' Guid='3373F5EB-371D-4430-97AD-43F613876351'>
+				<File Id='FoobarEXE' Name='Sample_App.exe' DiskId='1' Source='$(var.sourceFolder)Sample_App.exe' KeyPath='yes'>
+					<Shortcut Id="startmenuFoobar10" Directory="ProgramMenuDir" Name="Sample App 1.0"
+						WorkingDirectory='INSTALLFOLDER' Icon="Icon.exe" IconIndex="0" Advertise="yes" />
+					<Shortcut Id="desktopFoobar10" Directory="DesktopFolder" Name="Sample App 1.0"
+						WorkingDirectory='INSTALLFOLDER' Icon="Icon.exe" IconIndex="0" Advertise="yes" >
+					</Shortcut>
+						
+				</File>
+			</Component>
+			<Component Id="Sample_App.dll" Guid="8A0337C0-B70B-48D0-B607-87C0F4AED67D">
+				<File Id="Sample_App.dll" Source="$(var.sourceFolder)\Sample_App.dll" KeyPath="yes"/>
+		    </Component>
+			<!-- I need this because it my icon for the pages. For shortcut purpose only we can comment this -->
+			<Component Id="Sample_App.ico" Guid="0E2F8773-C7EC-4A01-A72D-1D1D4FB2D81D">
+				<File Id="Sample_App.ico" Source="$(var.sourceFolder)\Sample_App.ico" KeyPath="yes"/>
+		    </Component>
+			<Component Id="Sample_App.runtimeconfig.json" Guid="CC7C40AB-2994-4072-B0AC-6A6A842B53F8">
+				<File Id="Sample_App.runtimeconfig.json" Source="$(var.sourceFolder)\Sample_App.runtimeconfig.json" KeyPath="yes"/>
+		    </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

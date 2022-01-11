@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?define Version = "1.0.1" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+	 xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
+	<Bundle IconSourceFile="$(var.Wix_Heat_Installer.ProjectDir)Assets\Sample_App.ico"
+			Name="Sample Foobar App" Version="!(wix.ProductDisplayVersion)"
+			 Manufacturer="Foobar Ltd."
+			 UpgradeCode="{E29D10A3-55EE-43B2-9688-505B334FA929}">
+
+		<WixVariable Id="ProductDisplayVersion" Value="1.0.2.0" />
+
+		<!-- Change the installer UI background images, RTF -->
+		<BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense" >
+			<bal:WixStandardBootstrapperApplication
+				SuppressOptionsUI="yes"
+				LogoFile="$(var.Wix_Heat_Installer.ProjectDir)Assets\Logo.jpg" LogoSideFile="$(var.Wix_Heat_Installer.ProjectDir)Assets\LogoSide.png"
+				LicenseFile="$(var.Wix_Heat_Installer.ProjectDir)Assets\ProductAgreement.rtf" />
+		</BootstrapperApplicationRef>
+		
+		<Chain>
+			<PackageGroupRef Id="LocalDB2012" />
+			<PackageGroupRef Id="MyDemoAppInstaller" After="LocalDB2012" />
+		</Chain>
+	</Bundle>
+
+
+	<Fragment>
+		<!--<PackageGroup Id="SQLExpressCE">
+			--><!-- Per http://support.microsoft.com/kb/974247, on a 64-bit system both 32-bit and 64-bit packages must be installed and be the same version. --><!--
+			--><!-- <MsiPackage
+				  Visible="yes"
+				  Cache="no"
+				  Compressed="no"
+				  ForcePerMachine="yes"
+				  Permanent="yes"
+				  Vital="yes"
+				  SourceFile="$(var.ProjectDir)\Prerequisites\SSCERuntime-ENU.msi"
+				  InstallCondition="NOT VersionNT64" />--><!--
+			<MsiPackage
+				  Visible="yes"
+				  Cache="no"
+				  Compressed="no"
+				  ForcePerMachine="yes"
+				  Permanent="yes"
+				  Vital="yes"
+				  SourceFile="$(var.ProjectDir)\Prerequisites\SqlLocalDB 2016 x64.msi"
+				  InstallCondition="VersionNT64" />
+		</PackageGroup>-->
+	
+	<!-- LocalDB -->
+	<PackageGroup Id="LocalDB2012">
+		<MsiPackage
+		  Id="LocalDB2012"
+		  Cache="no"
+		  Compressed="yes"
+		  Permanent="no"
+		  ForcePerMachine="yes"
+		  Vital="yes"
+		  InstallCondition = "NOT SearchForLocalDBWin64 AND Not SearchForLocalDB AND NOT VersionNT64"
+		  SourceFile="$(var.Wix_Heat_Installer.ProjectDir)Prerequisites\SqlLocalDB 2016 x64.msi">
+			<MsiProperty Name="IACCEPTSQLLOCALDBLICENSETERMS" Value="YES"/>
+		</MsiPackage>
+		<MsiPackage
+		  Id="LocalDB2012x64"
+		  Cache="no"
+		  Compressed="yes"
+		  Permanent="no"
+		  ForcePerMachine="yes"
+		  Vital="yes"
+		  InstallCondition = "NOT SearchForLocalDBWin64 AND Not SearchForLocalDB AND  VersionNT64"
+		  SourceFile="$(var.Wix_Heat_Installer.ProjectDir)Prerequisites\SqlLocalDB 2016 x64.msi">
+			<MsiProperty Name="IACCEPTSQLLOCALDBLICENSETERMS" Value="YES"/>
+		</MsiPackage>
+	</PackageGroup>
+
+		<!-- My App -->
+		<PackageGroup Id="MyDemoAppInstaller">
+			<MsiPackage
+			  Id="MyDemoAppInstaller"
+			  Name="MyDemoAppInstaller.msi"
+			  DisplayInternalUI="yes"
+			  Cache="no"
+			  Compressed="yes"
+			  Permanent="no"
+			  ForcePerMachine="yes"
+			  Vital="yes"
+			  SourceFile="$(var.Wix_Heat_Installer.TargetPath)" />
+		</PackageGroup>
+		
+	</Fragment>
+</Wix>

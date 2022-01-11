@@ -1,0 +1,42 @@
+﻿<Window x:Class="Sample_App.LoginPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sample_App"
+        mc:Ignorable="d"
+        Title="Login Page" Height="450" Width="800" Icon="/Sample_App.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="10">
+            <Label Content="User Name : " />
+        </StackPanel>
+
+        <StackPanel  Grid.Column="1">
+            <TextBox x:Name="UserNameTxt" TextWrapping="Wrap" Width="120"
+                     Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </StackPanel>
+        
+        <StackPanel Margin="10" Grid.Row="1">
+            <Label Content="Password : " />
+        </StackPanel>
+
+        <StackPanel  Grid.Column="1" Grid.Row="1">
+            <PasswordBox x:Name="PasswordTxt" Width="120"
+                     Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <Button x:Name="LoginBtn" Content="Login" VerticalAlignment="Center" HorizontalAlignment="Left" Width="120" Margin="17,0,0,0" Click="Button_Click"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>

@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Component Id="cmp9BEF50AE838146F97ECA8747DB2FD72C" Guid="*">
+                <File Id="fil249D87FBBC06F55BE73BBD85B87747D9" KeyPath="yes" Source="$(var.HarvestPath)\Microsoft.Data.SqlClient.dll" />
+            </Component>
+            <Component Id="cmpECB4AFEEC4D7711360AF57F2CE96729D" Guid="*">
+                <File Id="filECDBBC068944450217F8667129FB0230" KeyPath="yes" Source="$(var.HarvestPath)\Microsoft.Identity.Client.dll" />
+            </Component>
+            <Component Id="cmpA4D9C03869723FFBEE9F289352A1B069" Guid="*">
+                <File Id="fil16D2CA7E816F03D234BCCE32B92E4CF4" KeyPath="yes" Source="$(var.HarvestPath)\Microsoft.IdentityModel.JsonWebTokens.dll" />
+            </Component>
+            <Component Id="cmpCA0CA4D611B62983A5F22D7DB1142FB5" Guid="*">
+                <File Id="filC5D0C88E7D913D0C810CF53291A3F75E" KeyPath="yes" Source="$(var.HarvestPath)\Microsoft.IdentityModel.Logging.dll" />
+            </Component>
+            <Component Id="cmp4198EB9AA246AF7D343AB15DAF582334" Guid="*">
+                <File Id="filAA5B36E3C32A09E48C15BE3B351FF4FE" KeyPath="yes" Source="$(var.HarvestPath)\Microsoft.IdentityModel.Protocols.dll" />
+            </Component>
+            <Component Id="cmpE50C5306874111AE648E7A064CFCA86B" Guid="*">
+                <File Id="filB8318DA8D009179B64B9C7E45FA2DAAA" KeyPath="yes" Source="$(var.HarvestPath)\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" />
+            </Component>
+            <Component Id="cmp1CCC42FAF94D59D43A57B48070D20BFB" Guid="*">
+                <File Id="filFC76E8ACD5E395C004E907381A1F22A7" KeyPath="yes" Source="$(var.HarvestPath)\Microsoft.IdentityModel.Tokens.dll" />
+            </Component>
+            <Component Id="cmpBC4FC00A26E7D32479D42D3411317FC5" Guid="*">
+                <File Id="fil90A8AAD9FC612906D405476D61CEA3F4" KeyPath="yes" Source="$(var.HarvestPath)\Newtonsoft.Json.dll" />
+            </Component>
+            <Component Id="cmp461127DC3E79956E60ACBF530BBD00D8" Guid="*">
+                <File Id="filE553C86E12DB5A8EB3FF233B85634142" KeyPath="yes" Source="$(var.HarvestPath)\OpenCvSharp.Blob.dll" />
+            </Component>
+            <Component Id="cmpFF270796B5ECFDCA6FBC9A5B42997622" Guid="*">
+                <File Id="filF3FD1E724D473C5E4FDE0C01A7C08ABB" KeyPath="yes" Source="$(var.HarvestPath)\OpenCvSharp.dll" />
+            </Component>
+            <Component Id="cmp9AD59129D493FC811D1909EC103DE2BF" Guid="*">
+                <File Id="fil908EF09AB22DF4399FC68845BA14F1D9" KeyPath="yes" Source="$(var.HarvestPath)\OpenCvSharp.Extensions.dll" />
+            </Component>
+            <Component Id="cmp5C3975E0C8E39C29229B77C1AED7640D" Guid="*">
+                <File Id="fil048E9386D45BD991B4B7A122057BDDC1" KeyPath="yes" Source="$(var.HarvestPath)\Sample_App.deps.json" />
+            </Component>
+            <Component Id="cmp3EEBAE916D115E8CD8074C712F16184A" Guid="*">
+                <File Id="fil4FF0EE8847488CB4B441384670C4E839" KeyPath="yes" Source="$(var.HarvestPath)\Sample_App.dll" />
+            </Component>
+            <Component Id="cmp15428700D473058CD842C0C4C0A1E941" Guid="*">
+                <File Id="fil2FA332CB51ED9FA4AF378210872FABFD" KeyPath="yes" Source="$(var.HarvestPath)\Sample_App.dll.config" />
+            </Component>
+            <Component Id="cmp998A4C9067FB2F55871C9379612B34F4" Guid="*">
+                <File Id="fil9F9C4C71900129ED1C8D032DA7071C78" KeyPath="yes" Source="$(var.HarvestPath)\Sample_App.exe" />
+            </Component>
+            <Component Id="cmpE48116244D0D298F58DA95A384233F98" Guid="*">
+                <File Id="fil0C66F3AA6CCE56D17F29BB15C90A83A5" KeyPath="yes" Source="$(var.HarvestPath)\Sample_App.ico" />
+            </Component>
+            <Component Id="cmpB8F3251FBD142B94010FBE1529768BE2" Guid="*">
+                <File Id="fil48AB9EACEA91256ABA4D271DC8143FE7" KeyPath="yes" Source="$(var.HarvestPath)\Sample_App.pdb" />
+            </Component>
+            <Component Id="cmp72D2466AFF94803EEBB5C96C9BA95EA2" Guid="*">
+                <File Id="fil6B60F7872D60CC51FE9C051BC0C7CB53" KeyPath="yes" Source="$(var.HarvestPath)\Sample_App.runtimeconfig.dev.json" />
+            </Component>
+            <Component Id="cmpA681E73B47BFBCBC92D8B7A91C71457E" Guid="*">
+                <File Id="fil81EB75BB86ED61E63B333885E2C28A92" KeyPath="yes" Source="$(var.HarvestPath)\Sample_App.runtimeconfig.json" />
+            </Component>
+            <Component Id="cmp817DADD4F645A06A14E7CEFCE195AEAC" Guid="*">
+                <File Id="fil556EF176150B87793A1F7B3F04103BC6" KeyPath="yes" Source="$(var.HarvestPath)\System.IdentityModel.Tokens.Jwt.dll" />
+            </Component>
+            <Component Id="cmp3704D619BA8176CC239C4E2E3DE22240" Guid="*">
+                <File Id="fil33F3D184398B14A49BD98032A8871B75" KeyPath="yes" Source="$(var.HarvestPath)\System.Runtime.Caching.dll" />
+            </Component>
+            <Directory Id="dir8A66300A65ECF7B42463C2AE888E810F" Name="Data">
+                <Component Id="cmpAFD3619B2A81350B794A85A9657B405F" Guid="*">
+                    <File Id="fil6277E005BEC0357B4F81E1F3F0165E49" KeyPath="yes" Source="$(var.HarvestPath)\Data\FoobarDB.mdf" />
+                </Component>
+                <Component Id="cmpD48ABD62C374572911DDF17EDFD63B4B" Guid="*">
+                    <File Id="fil3C06CD5F334DC973A2D35F7D3F37F0C1" KeyPath="yes" Source="$(var.HarvestPath)\Data\FoobarDB_log.ldf" />
+                </Component>
+            </Directory>
+            <Directory Id="dir58E8247E2885C01898CAD009F9EFD8BA" Name="runtimes">
+                <Directory Id="dirDD6F90495A1A6169171F36CE85E975B6" Name="unix">
+                    <Directory Id="dirF5C312D00ABBDC163194A7BEF01BFACF" Name="lib">
+                        <Directory Id="dir3B1958D07DDA9DA949553EEADDD116E7" Name="netcoreapp2.0">
+                            <Component Id="cmp4D6C6B0CE27D9E9E9AC244E186CE1572" Guid="*">
+                                <File Id="filEB963768C2168EDF3F5E796A78A065A6" KeyPath="yes" Source="$(var.HarvestPath)\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll" />
+                            </Component>
+                        </Directory>
+                        <Directory Id="dir6FAA93F403AFB5CB578180C70AA97B20" Name="netcoreapp2.1">
+                            <Component Id="cmp81BC0DB674570886BBB804826142466D" Guid="*">
+                                <File Id="fil5E799CAD1A6D25587DDF5D0B2B94E576" KeyPath="yes" Source="$(var.HarvestPath)\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir9BE9104649A116CC7BCCF4D9CCD3331B" Name="win">
+                    <Directory Id="dirD19B0610952D1EE2D417EB5361695989" Name="lib">
+                        <Directory Id="dirE6C91B9343029DAC8410CDFBF32A7D8C" Name="netcoreapp2.0">
+                            <Component Id="cmp715E5B210852A04EB7289D6B4121E136" Guid="*">
+                                <File Id="filF503D5558AB028A90661618F2B5F28A1" KeyPath="yes" Source="$(var.HarvestPath)\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll" />
+                            </Component>
+                        </Directory>
+                        <Directory Id="dirC7A12D033E10A7A61C2BB3B7672AF3F7" Name="netcoreapp2.1">
+                            <Component Id="cmpE826C47AD37442DF9A8FEE65677928CB" Guid="*">
+                                <File Id="fil2601C6B1C0D11C0F11AB2BA7B33167D0" KeyPath="yes" Source="$(var.HarvestPath)\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirFF6AADC4B618984E1542CDA5FCBD7BB1" Name="win-arm64">
+                    <Directory Id="dir65EC979D52EB501E3A656AA03EE4F2F5" Name="native">
+                        <Component Id="cmp3002D02E8CBA7FB0714D10077A135748" Guid="*">
+                            <File Id="fil9C23EE39EC9930FF59D47EAD3A8DCA11" KeyPath="yes" Source="$(var.HarvestPath)\runtimes\win-arm64\native\sni.dll" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirB9C75524282911E40C3C964A8836A714" Name="win-x64">
+                    <Directory Id="dir1F9DF9DD2FB29AE2942604FAC206D5C4" Name="native">
+                        <Component Id="cmp5C0A6FE290FABFCD3F37EA2F503438EE" Guid="*">
+                            <File Id="fil92AB955C69E94E655AAE7CF711C92F38" KeyPath="yes" Source="$(var.HarvestPath)\runtimes\win-x64\native\OpenCvSharpExtern.dll" />
+                        </Component>
+                        <Component Id="cmpC534EEBF8BD87E26CAB0F9FA91E271CC" Guid="*">
+                            <File Id="fil055DDAC68D57B4B131E4030AE9DF8DC7" KeyPath="yes" Source="$(var.HarvestPath)\runtimes\win-x64\native\opencv_ffmpeg400_64.dll" />
+                        </Component>
+                        <Component Id="cmp2132F8D4914AC627374DF6B641DED868" Guid="*">
+                            <File Id="filF502A2486EBDDB05E379A61C52926963" KeyPath="yes" Source="$(var.HarvestPath)\runtimes\win-x64\native\sni.dll" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir92F336DAA82E5A629052407A3F87EF27" Name="win-x86">
+                    <Directory Id="dir2B43AAE918D399CEF13EC6CBA2D3D5EA" Name="native">
+                        <Component Id="cmp38FCF71D39C2BB9143C116A5181B8EED" Guid="*">
+                            <File Id="filABC1302745124EFA31B8FE31E36550FF" KeyPath="yes" Source="$(var.HarvestPath)\runtimes\win-x86\native\OpenCvSharpExtern.dll" />
+                        </Component>
+                        <Component Id="cmpBFE0D196284747F3592942E22F0FDF51" Guid="*">
+                            <File Id="filBD424FD5121F266E5B35CE2744D54310" KeyPath="yes" Source="$(var.HarvestPath)\runtimes\win-x86\native\opencv_ffmpeg400.dll" />
+                        </Component>
+                        <Component Id="cmpA69E1C886BEA900FBD4C325C11705F70" Guid="*">
+                            <File Id="fil0714DC5AB4297BE12792CA5DAD04698C" KeyPath="yes" Source="$(var.HarvestPath)\runtimes\win-x86\native\sni.dll" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="HeatGenerated">
+            <ComponentRef Id="cmp9BEF50AE838146F97ECA8747DB2FD72C" />
+            <ComponentRef Id="cmpECB4AFEEC4D7711360AF57F2CE96729D" />
+            <ComponentRef Id="cmpA4D9C03869723FFBEE9F289352A1B069" />
+            <ComponentRef Id="cmpCA0CA4D611B62983A5F22D7DB1142FB5" />
+            <ComponentRef Id="cmp4198EB9AA246AF7D343AB15DAF582334" />
+            <ComponentRef Id="cmpE50C5306874111AE648E7A064CFCA86B" />
+            <ComponentRef Id="cmp1CCC42FAF94D59D43A57B48070D20BFB" />
+            <ComponentRef Id="cmpBC4FC00A26E7D32479D42D3411317FC5" />
+            <ComponentRef Id="cmp461127DC3E79956E60ACBF530BBD00D8" />
+            <ComponentRef Id="cmpFF270796B5ECFDCA6FBC9A5B42997622" />
+            <ComponentRef Id="cmp9AD59129D493FC811D1909EC103DE2BF" />
+            <ComponentRef Id="cmp5C3975E0C8E39C29229B77C1AED7640D" />
+            <ComponentRef Id="cmp3EEBAE916D115E8CD8074C712F16184A" />
+            <ComponentRef Id="cmp15428700D473058CD842C0C4C0A1E941" />
+            <ComponentRef Id="cmp998A4C9067FB2F55871C9379612B34F4" />
+            <ComponentRef Id="cmpE48116244D0D298F58DA95A384233F98" />
+            <ComponentRef Id="cmpB8F3251FBD142B94010FBE1529768BE2" />
+            <ComponentRef Id="cmp72D2466AFF94803EEBB5C96C9BA95EA2" />
+            <ComponentRef Id="cmpA681E73B47BFBCBC92D8B7A91C71457E" />
+            <ComponentRef Id="cmp817DADD4F645A06A14E7CEFCE195AEAC" />
+            <ComponentRef Id="cmp3704D619BA8176CC239C4E2E3DE22240" />
+            <ComponentRef Id="cmpAFD3619B2A81350B794A85A9657B405F" />
+            <ComponentRef Id="cmpD48ABD62C374572911DDF17EDFD63B4B" />
+            <ComponentRef Id="cmp4D6C6B0CE27D9E9E9AC244E186CE1572" />
+            <ComponentRef Id="cmp81BC0DB674570886BBB804826142466D" />
+            <ComponentRef Id="cmp715E5B210852A04EB7289D6B4121E136" />
+            <ComponentRef Id="cmpE826C47AD37442DF9A8FEE65677928CB" />
+            <ComponentRef Id="cmp3002D02E8CBA7FB0714D10077A135748" />
+            <ComponentRef Id="cmp5C0A6FE290FABFCD3F37EA2F503438EE" />
+            <ComponentRef Id="cmpC534EEBF8BD87E26CAB0F9FA91E271CC" />
+            <ComponentRef Id="cmp2132F8D4914AC627374DF6B641DED868" />
+            <ComponentRef Id="cmp38FCF71D39C2BB9143C116A5181B8EED" />
+            <ComponentRef Id="cmpBFE0D196284747F3592942E22F0FDF51" />
+            <ComponentRef Id="cmpA69E1C886BEA900FBD4C325C11705F70" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

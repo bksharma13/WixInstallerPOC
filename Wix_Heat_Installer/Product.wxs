@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+	 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+	<?define sourceFolder="D:\Xtra\Add Work\Sample_App_Wix\Sample_App_Wix\Sample_App\bin\Debug\netcoreapp3.1\"?>
+	<!-- Give product a unique ID per platform -->
+	<?if $(var.Platform)=x64 ?>
+	<?define ProductCode = "{2087AF0E-BFE1-44EA-B2B2-9D4DE3E7AC69}" ?>
+	<?else?>
+	<?define ProductCode = "{39FC466D-11A7-4A79-B92C-9031EEE1E2E1}" ?>
+	<?endif?>
+	<Product Id="$(var.ProductCode)"
+			 Name="Sample Foobar App" Language="1033" Version="!(bind.FileVersion.fil9F9C4C71900129ED1C8D032DA7071C78)"
+			 Manufacturer="Foobar Ltd."
+			 UpgradeCode="0DBE54A8-0D14-49C8-A6A1-C62AD6E21A3C">
+		<Package Id='*' Keywords='Installer'
+				 Description="Sample Foobar App 1.0 Installer"
+				Comments='Sample Foobar App is a registered trademark of Foobar Ltd.' Manufacturer='Foobar Ltd.'
+				InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<!-- Change the installer UI background images -->
+		<!--<WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\Assets\ProductAgreement.rtf" />-->
+		<!--<WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Assets\FoobarBackgrnd.bmp" />-->
+		<!--<WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)\Assets\FoobarBanner.bmp" />-->
+		
+		<Media Id="1" Cabinet="FoobarApp.cab" EmbedCab="yes" />
+		<!-- Define main app icon -->
+		<!-- Use the icon.ico icon for this installer (shows up in Add/Remove programs) -->
+		<Icon Id="Icon.exe" SourceFile="$(var.ProjectDir)Assets\Sample_App.ico" />
+		<Property Id="ARPPRODUCTICON" Value="Icon.exe" />
+		
+		<MajorUpgrade Schedule="afterInstallInitialize"
+				  AllowDowngrades="no"
+				  AllowSameVersionUpgrades="no"
+				  DowngradeErrorMessage="A newer version of Sample Foobar App is already installed." />
+
+		<!-- Create a basic UI for the installer -->
+		<!--<UIRef Id="WixUI_Minimal" />-->
+		
+		<Feature Id="ProductFeature" Title="Wix_Installer" Level="1">
+			<ComponentGroupRef Id="HeatGenerated" />
+			<ComponentRef Id="ApplicationShortcut" />
+			<ComponentRef Id="ApplicationShortcutDesktop" />
+			<ComponentRef Id="INSTALLFOLDER_Permission" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<?if $(var.Platform)=x64 ?>
+			<!-- Program Files (64bit) folder -->
+			<Directory Id="ProgramFiles64Folder">
+				<Directory Id='Foobar' Name='Foobar'>
+					<Directory Id='INSTALLFOLDER' Name='Sample App 1.0'/>
+				</Directory>
+			</Directory>
+			<?else?>
+			<!-- Program Files (32bit) folder -->
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id='Foobar' Name='Foobar'>
+					<Directory Id='INSTALLFOLDER' Name='Sample App 1.0'/>
+				</Directory>
+			</Directory>
+			<?endif?>
+
+			<!-- Start Menu & Desktop-->
+			<Directory Id="ProgramMenuFolder" Name="Programs">
+				<Directory Id="ProgramMenuDir" Name="Sample App 1.0">					
+				</Directory>
+			</Directory>
+			<Directory Id="DesktopFolder" Name="Desktop" />
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<DirectoryRef Id="ProgramMenuFolder">
+			<Component Id="ApplicationShortcut" Guid="CA8A7E85-1E09-4795-8FDE-DB6F96E2920D">
+				<!-- can alos use this as Target="[INSTALLFOLDER]Sample_App.exe"-->
+				<Shortcut Id="ApplicationStartMenuShortcut"
+					Name="Sample App 1.0" Icon="Icon.exe"
+					Target="[#fil9F9C4C71900129ED1C8D032DA7071C78]"
+					WorkingDirectory="INSTALLFOLDER"/>
+				<RemoveFolder Id="CleanUpShortCut" Directory="ProgramMenuDir" On="uninstall"/>
+				<RegistryKey Root="HKCU"
+							 Key="Software\[Manufacturer]\[ProductName]"
+							Action="createAndRemoveOnUninstall">
+					<RegistryValue Type="integer" Name="AppShortCut" Value="1" KeyPath="yes"/>
+				</RegistryKey>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DesktopFolder">
+			<Component Id="ApplicationShortcutDesktop" Guid="ED1F7831-2B48-45E9-A6A1-794758ECA8A2">
+				<Shortcut Id="ApplicationDesktopShortcut"
+					Name="Sample App 1.0" Icon="Icon.exe"
+					Target="[#fil9F9C4C71900129ED1C8D032DA7071C78]"
+					WorkingDirectory="INSTALLFOLDER"/>
+				<RemoveFolder Id="RemoveDesktopFolder" Directory="DesktopFolder" On="uninstall"/>
+				<RegistryKey Root="HKCU"
+							 Key="Software\[Manufacturer]\[ProductName]"
+							Action="createAndRemoveOnUninstall">
+					<RegistryValue Type="integer" Name="DesktopShortCut" Value="1" KeyPath="yes"/>
+				</RegistryKey>
+			</Component>
+		</DirectoryRef>
+		
+		<DirectoryRef Id="INSTALLFOLDER">
+			<Component Id="INSTALLFOLDER_Permission" Guid="16D50AD5-77A8-4A46-B5D3-C28AA4928286">
+				<CreateFolder>
+					<util:PermissionEx User="Users" GenericAll="yes"/>
+				</CreateFolder>
+			</Component>
+		</DirectoryRef>
+
+	</Fragment>
+	
+	<Fragment>
+		<!--<ComponentGroup Id="ProductComponents" Directory="INSTALLDIR">
+			<Component Id='MainExecutable' Guid='3373F5EB-371D-4430-97AD-43F613876351'>
+				<File Id='FoobarEXE' Name='Sample_App.exe' DiskId='1' Source='$(var.sourceFolder)Sample_App.exe' KeyPath='yes'>
+					<Shortcut Id="startmenuFoobar10" Directory="ProgramMenuDir" Name="Sample App 1.0"
+						WorkingDirectory='INSTALLDIR' Icon="Icon.exe" IconIndex="0" Advertise="yes" />
+					<Shortcut Id="desktopFoobar10" Directory="DesktopFolder" Name="Sample App 1.0"
+						WorkingDirectory='INSTALLDIR' Icon="Icon.exe" IconIndex="0" Advertise="yes" >
+					</Shortcut>
+				</File>
+				<RemoveFolder Id="CleanUpShortCut" Directory="ProgramMenuDir" On="uninstall"/>
+				<RemoveFolder Id="RemoveDesktopFolder" Directory="DesktopFolder" On="uninstall"/>
+			</Component>
+		</ComponentGroup>-->
+	</Fragment>
+</Wix>
